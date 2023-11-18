@@ -29,17 +29,39 @@ class Enigma:
             self.r3.rotate()
         else:
             self.r3.rotate()
-        
         signal = self.k.forward(letter)
+        path = [signal,signal]
         signal = self.p.forward(signal)
+        path.append(signal)
+        path.append(signal)
+
         signal = self.r3.forward(signal)
+        path.append(signal)
+        path.append(signal)
         signal = self.r2.forward(signal)
+        path.append(signal)
+        path.append(signal)
         signal = self.r1.forward(signal)
+        path.append(signal)
+        path.append(signal)
         signal = self.re.reflect(signal)
+        path.append(signal)
+        path.append(signal)
+        path.append(signal)
         signal = self.r1.backward(signal)
+        path.append(signal)
+        path.append(signal)
         signal = self.r2.backward(signal)
+        path.append(signal)
+        path.append(signal)
         signal = self.r3.backward(signal)
+        path.append(signal)
+        path.append(signal)
         signal = self.p.backward(signal)
+        path.append(signal)
+        path.append(signal)
+
         letter = self.k.backward(signal)
-        return letter
+
+        return path,letter
        
